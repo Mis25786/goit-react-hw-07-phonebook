@@ -16,11 +16,11 @@ const ContactList = () => {
     );
   };
 
-  const arryFilterContacts = getVisibleContacts();
+  const filterContacts = getVisibleContacts();
 
   return (
     <ul>
-      {arryFilterContacts.map(({ id, name, number }) => (
+      {filterContacts.map(({ id, name, number }) => (
         <li key={id} className={css['ContactList-item']}>
           <p className={css['ContactList-text']}>{name}</p>
           <p className={css['ContactList-text']}>{number}</p>

@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
 
-const ContactForm = ({ createUser }) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { addContact } from 'redux/contacts/contactsSlice';
+
+const ContactForm = () => {
+  const contacts = useSelector(state => state.contacts.contacts);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -19,6 +27,13 @@ const ContactForm = ({ createUser }) => {
     });
     setName('');
     setNumber('');
+  };
+
+  const createUser = data => {
+    if (contacts.find(contact => contact.name === data.name)) {
+      return Notify.info('This name already exists in the list');
+    }
+    dispatch(addContact({ ...data, id: nanoid() }));
   };
 
   return (

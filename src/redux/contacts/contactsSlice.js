@@ -1,9 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import {
-  deleteContactsThunk,
-  addContactsThunk,
-  getContactsThunk,
-} from 'redux/operations';
+import { deleteContact, addContact, fetchContacts } from 'redux/operations';
 
 const contactsInitialState = { contacts: [], isLoading: false, error: null };
 
@@ -36,31 +32,31 @@ const contactsSlice = createSlice({
   initialState: contactsInitialState,
   extraReducers: builder => {
     builder
-      .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
-      .addCase(addContactsThunk.fulfilled, handleFulfilledAdd)
-      .addCase(deleteContactsThunk.fulfilled, handleFulfilledDelete)
+      .addCase(fetchContacts.fulfilled, handleFulfilledGet)
+      .addCase(addContact.fulfilled, handleFulfilledAdd)
+      .addCase(deleteContact.fulfilled, handleFulfilledDelete)
 
       .addMatcher(
         isAnyOf(
-          getContactsThunk.pending,
-          addContactsThunk.pending,
-          deleteContactsThunk.pending
+          fetchContacts.pending,
+          addContact.pending,
+          deleteContact.pending
         ),
         handlePending
       )
       .addMatcher(
         isAnyOf(
-          getContactsThunk.fulfilled,
-          addContactsThunk.fulfilled,
-          deleteContactsThunk.fulfilled
+          fetchContacts.fulfilled,
+          addContact.fulfilled,
+          deleteContact.fulfilled
         ),
         handleFulfilled
       )
       .addMatcher(
         isAnyOf(
-          getContactsThunk.rejected,
-          addContactsThunk.rejected,
-          deleteContactsThunk.rejected
+          fetchContacts.rejected,
+          addContact.rejected,
+          deleteContact.rejected
         ),
         handleRejected
       );

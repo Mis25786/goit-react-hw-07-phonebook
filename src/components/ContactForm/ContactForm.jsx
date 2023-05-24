@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import { addContactsThunk } from 'redux/operations';
+import { addContact } from 'redux/operations';
 
 import css from './ContactForm.module.css';
 
@@ -33,9 +33,9 @@ const ContactForm = () => {
 
   const createUser = data => {
     if (contacts.find(contact => contact.name === data.name)) {
-      return Notify.info('This name already exists in the list');
+      return Notify.failure('This name already exists in the list');
     }
-    dispatch(addContactsThunk({ ...data, id: nanoid() }));
+    dispatch(addContact({ ...data, id: nanoid() }));
   };
 
   return (

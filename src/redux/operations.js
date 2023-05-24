@@ -1,32 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import {
-//   addContact,
-//   deleteContact,
-//   getAllContacts,
-// } from 'services/phoneContactsApi';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://646de5959c677e23218a9944.mockapi.io';
 
-// export const getContactsThunk = createAsyncThunk('contacts/getContacts', () => {
-//   return getAllContacts();
-// });
-// export const addContactsThunk = createAsyncThunk(
-//   'contacts/addContact',
-//   contact => {
-//     return addContact(contact);
-//   }
-// );
-// export const deleteContactsThunk = createAsyncThunk(
-//   'contacts/deleteContact',
-//   contactId => {
-//     return deleteContact(contactId);
-//   }
-// );
-
-//!===========================================================
-export const getContactsThunk = createAsyncThunk(
-  'contacts/getContacts',
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
@@ -37,7 +16,7 @@ export const getContactsThunk = createAsyncThunk(
   }
 );
 
-export const addContactsThunk = createAsyncThunk(
+export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
@@ -49,7 +28,7 @@ export const addContactsThunk = createAsyncThunk(
   }
 );
 
-export const deleteContactsThunk = createAsyncThunk(
+export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {

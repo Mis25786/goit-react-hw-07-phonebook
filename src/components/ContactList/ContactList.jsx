@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContactsThunk } from 'redux/operations';
+
+import { deleteContact } from 'redux/operations';
+
 import css from './ContactList.module.css';
 
 const ContactList = () => {
@@ -25,7 +27,7 @@ const ContactList = () => {
           <p className={css['ContactList-text']}>{number}</p>
 
           <button
-            onClick={() => dispatch(deleteContactsThunk(id))}
+            onClick={() => dispatch(deleteContact(id))}
             className={css['ContactList-delete']}
           >
             delete

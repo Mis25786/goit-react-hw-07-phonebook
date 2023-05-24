@@ -5,7 +5,7 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 
-import { getContactsThunk } from 'redux/operations';
+import { fetchContacts } from 'redux/operations';
 
 import css from './App.module.css';
 
@@ -14,21 +14,17 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContactsThunk());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
-  console.log('contactsApp :>> ', contacts);
-  console.log('isLoadingApp :>> ', isLoading);
-  console.log('errorApp :>> ', error);
   return (
     <>
       <div className={css.phonebook}>
+        {error && <h2>An error occurred, please restart the application!!!</h2>}
+
         <h1 className={css['phonebook-title']}>Phonebook</h1>
 
-        <ContactForm />
-
-        {isLoading && <h3>Loading...</h3>}
-        {error && <h2>An error occurred, please restart the application!!!</h2>}
+        {!error && <ContactForm />}
 
         {contacts.length > 0 ? (
           <>
@@ -38,6 +34,8 @@ export const App = () => {
         ) : (
           <h2>There are no contacts</h2>
         )}
+
+        {isLoading && <h3>Loading...</h3>}
 
         {contacts && !error && <ContactList />}
       </div>

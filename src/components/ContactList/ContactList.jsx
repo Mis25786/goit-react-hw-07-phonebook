@@ -5,7 +5,6 @@ import css from './ContactList.module.css';
 const ContactList = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.filter.filter);
-
   const dispatch = useDispatch();
 
   const getVisibleContacts = () => {

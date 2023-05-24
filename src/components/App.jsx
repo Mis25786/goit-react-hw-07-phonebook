@@ -17,19 +17,6 @@ export const App = () => {
     dispatch(getContactsThunk());
   }, [dispatch]);
 
-  // return (
-  //   <>
-  //     <div className={css.phonebook}>
-  //       <h1 className={css['phonebook-title']}>Phonebook</h1>
-
-  //       <ContactForm />
-  //       <h2>Contacts</h2>
-  //       <Filter />
-  //       <ContactList />
-  //     </div>
-  //   </>
-  // );
-
   return (
     <>
       <div className={css.phonebook}>

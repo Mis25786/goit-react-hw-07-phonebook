@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {
-  addContact,
-  deleteContact,
-  getAllContacts,
-} from 'services/phoneContactsApi';
+// import {
+//   addContact,
+//   deleteContact,
+//   getAllContacts,
+// } from 'services/phoneContactsApi';
 
 axios.defaults.baseURL = 'https://646de5959c677e23218a9944.mockapi.io';
 

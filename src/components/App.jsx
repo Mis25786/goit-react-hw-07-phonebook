@@ -32,13 +32,13 @@ export const App = () => {
 
   return (
     <>
-      {isLoading && <h3>Loading...</h3>}
-      {error && <h2>An error occurred, please restart the application!!!</h2>}
-
       <div className={css.phonebook}>
         <h1 className={css['phonebook-title']}>Phonebook</h1>
 
         <ContactForm />
+
+        {isLoading && <h3>Loading...</h3>}
+        {error && <h2>An error occurred, please restart the application!!!</h2>}
 
         {contacts.length > 0 ? (
           <>

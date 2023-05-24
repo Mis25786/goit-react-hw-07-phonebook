@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import css from './ContactForm.module.css';
-
 import { useSelector, useDispatch } from 'react-redux';
+
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { addContact } from 'redux/contacts/contactsSlice';
+
+import { addContactsThunk } from 'redux/operations';
+
+import css from './ContactForm.module.css';
 
 const ContactForm = () => {
   const contacts = useSelector(state => state.contacts.contacts);
@@ -33,14 +35,13 @@ const ContactForm = () => {
     if (contacts.find(contact => contact.name === data.name)) {
       return Notify.info('This name already exists in the list');
     }
-    dispatch(addContact({ ...data, id: nanoid() }));
+    dispatch(addContactsThunk({ ...data, id: nanoid() }));
   };
 
   return (
     <form className={css.form} autoComplete="off" onSubmit={handleSubmit}>
       <label className={css['label-name']}>
         <span className={css['label-text']}>Name</span>
-
         <input
           className={css.input}
           value={name}
@@ -52,9 +53,9 @@ const ContactForm = () => {
           required
         />
       </label>
+
       <label className={css['label-number']}>
         <span className={css['label-text']}>Number</span>
-
         <input
           className={css.input}
           value={number}
@@ -66,6 +67,7 @@ const ContactForm = () => {
           required
         />
       </label>
+
       <button className={css['btn-add']}>Add contact</button>
     </form>
   );

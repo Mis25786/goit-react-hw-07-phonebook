@@ -1,8 +1,18 @@
+// import { configureStore } from '@reduxjs/toolkit';
+// import { reducerPhoneBook } from './reducer';
+
+// export const store = configureStore({
+//   reducer: reducerPhoneBook,
+// });
+
+//?=======================================
+
 import { configureStore } from '@reduxjs/toolkit';
-import { reducerPhoneBook } from './reducer';
+import { contactsReducer } from './contacts/contactsSlice';
+import { filterReducer } from './filter/filterSlice';
 
 export const store = configureStore({
-  reducer: reducerPhoneBook,
+  reducer: { contacts: contactsReducer, filter: filterReducer },
 });
 
 //?=======================================

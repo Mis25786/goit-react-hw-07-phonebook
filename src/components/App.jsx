@@ -11,12 +11,15 @@ import css from './App.module.css';
 
 export const App = () => {
   const { contacts, isLoading, error } = useSelector(state => state.contacts);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
 
+  console.log('contactsApp :>> ', contacts);
+  console.log('isLoadingApp :>> ', isLoading);
+  console.log('errorApp :>> ', error);
   return (
     <>
       <div className={css.phonebook}>
